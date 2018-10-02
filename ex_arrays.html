@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Exercice SJ</title>
+  <style type="text/css">
+
+ 
+    
+  td{
+    border: 2px grey solid;
+    padding: 20px 20px 20px 20px;
+  }
+  </style>
+
+  <script type="text/javascript">
+    var clients = [
+      {
+        name: 'Toto',
+        gender: 'M',
+        age: 25
+      },
+      {
+        name: 'Seb',
+        gender: 'M',
+        age: 55
+      },
+      {
+        name: 'Lea',
+        gender: 'Mme',
+        age: 20
+      },
+      {
+        name: 'Ludivine',
+        gender: 'Mme',
+        age: 25
+      },
+      {
+        name: 'Titi',
+        gender: 'M',
+        age: 56
+      }
+      
+    ];
+
+   function init(){ 
+
+     var tableau = document.getElementById("clients");
+      tableau.innerHTML = "";
+
+    for(var i=0; i<clients.length; i++){
+      console.log(clients[i].name);
+      //on créé un tr dans la table
+      //on efface le tableau pour etre sur de repartir 
+      var ligne = tableau.insertRow(i);
+      //on créé 3 td ds le tr et on les remplitavec les valeurs
+      var cell1 = ligne.insertCell(0);
+      var cell2 = ligne.insertCell(1);
+      var cell3 = ligne.insertCell(2);
+      var supp = ligne.insertCell(3);
+      var modif = ligne.insertCell(4);
+
+      cell1.innerHTML=clients[i].gender;
+      cell2.innerHTML=clients[i].name;
+      cell3.innerHTML=clients[i].age+" ans";
+      supp.innerHTML= '<input type="button" onclick="deleteRow(this)" value="Supprimer">';
+      modif.innerHTML= '<input type="button" onclick="updateRow(this)" value="Modifier">'; 
+
+      }
+    }
+
+    function addItem(){
+      var nom = document.getElementById("name").value;
+      var genre = document.getElementById("gender").value;
+      var age = document.getElementById("age").value;
+      //clients.push({name: nom,gender: genre, age: age})
+      clients[clients.length] = {name: nom,gender: genre, age: age};
+      init(); //on met à jour l'affichage du tableauen appelant init()
+    }
+
+    function deleteRow(ligne){ //this=<input type="button"
+      var a_supp = ligne.parentNode.parentNode;
+      a_supp.remove();
+    }
+
+    function modifyElement(ligne){
+      var modif = ligne.parentNode.parentNode;
+      modif.splice();
+    }
+  </script>
+  </head>
+
+  <body onload="init()">
+      <table>
+        <thead>
+          <tr>
+            <td>Gender</td>
+            <td>Name</td>
+            <td>Age</td>
+          </tr>
+        </thead>
+        <tbody id="clients">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  </body>
+</html>
